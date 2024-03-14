@@ -1,16 +1,85 @@
 ---
+import Card from "../components/Card.astro";
 import Navigation from "../components/Navigation.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
+<script>
+    import carousel from "../scripts/Typewriter.js";
+    document.addEventListener("DOMContentLoaded", () => {
+        const eleRef = document.getElementById("typewriter");
+        carousel(
+            [
+                "Technik-Enthusiast.",
+                "Bug-Jäger.",
+                "Leidenschaftlicher Fotograf.",
+                "Code-Künstler.",
+            ],
+            eleRef,
+        );
+    });
+</script>
 <Layout title="Welcome to Domenic">
     <Navigation />
     <main class="text-[#323232]">
+        <section class="mt-20 flex gap-40">
+            <div>
+                <h1 class="text-8xl font-bold leading-[0.8]">
+                    HI <span class="text-5xl font-light">ich bin</span>
+                    <br /> DOMENIC
+                </h1>
+                <h2 class="text-4xl mt-3 font-extralight">
+                    Ein <span id="typewriter"></span><div class="input-cursor">
+                    </div>
+                </h2>
+                <p class="mt-5 text-sm font-light">
+                    Als Fullstack-Entwickler arbeite ich gerne mit Svelte im
+                    Frontend und Go sowie Node.js im Backend, bin aber immer auf
+                    der Suche nach neuen Technologien und Ansätzen, um mein
+                    Spektrum zu erweitern. Meine Begeisterung für Technik
+                    motiviert mich, mich kontinuierlich weiterzubilden und die
+                    neuesten Branchentrends zu erkunden. Ich freue mich darauf,
+                    in einem dynamischen Umfeld zu arbeiten, das meine
+                    Fähigkeiten herausfordert und mein Wachstum fördert.
+                </p>
+            </div>
+            <img
+                src="/Domenic.jpg"
+                alt="Domenic"
+                width="400"
+                height="740"
+                class="w-full max-w-96"
+            />
+        </section>
+
         <section class="mt-20">
-            <h1 class="text-9xl font-bold leading-[0.8]">
-                HI <span class="text-5xl font-light">ich bin</span>
-                <br /> DOMENIC
-            </h1>
+            <h2 class="text-5xl font-bold">MEINE <br />PROJEKTE</h2>
+            <Card />
         </section>
     </main>
 </Layout>
+
+<style>
+    .input-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 2.25rem;
+        background-color: #323232;
+        transform: translatey(3px);
+        animation: blink 0.6s linear infinite alternate;
+    }
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        40% {
+            opacity: 1;
+        }
+        60% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
