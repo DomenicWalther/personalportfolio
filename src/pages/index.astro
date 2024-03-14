@@ -2,6 +2,8 @@
 import Card from "../components/Card.astro";
 import Navigation from "../components/Navigation.astro";
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import selfPortrait from "../../public/Domenic.jpg";
 ---
 
 <script>
@@ -19,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
         );
     });
 </script>
-<Layout title="Welcome to Domenic">
+<Layout title="Domenic Walther | Entwickler aus Würzburg">
     <Navigation />
     <main class="text-[#323232]">
         <section class="mt-20 flex gap-40">
@@ -43,18 +45,40 @@ import Layout from "../layouts/Layout.astro";
                     Fähigkeiten herausfordert und mein Wachstum fördert.
                 </p>
             </div>
-            <img
-                src="/Domenic.jpg"
-                alt="Domenic"
-                width="400"
-                height="740"
+            <Image
+                src={selfPortrait}
+                alt="Domenic Walther"
                 class="w-full max-w-96"
             />
         </section>
 
         <section class="mt-20">
             <h2 class="text-5xl font-bold">MEINE <br />PROJEKTE</h2>
-            <Card />
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-10"
+            >
+                <Card
+                    title="Foto-Studio Schwab Remlingen"
+                    description="Vollständige Überarbeitung mit Fokus auf modernem Design, SEO-Optimierung und schnelleren Ladezeiten. Einsatz von Webflow ermöglicht dem Studio einfache Inhaltsaktuallisierung ohne Wordpress."
+                />
+                <Card
+                    title="PhotoFlow"
+                    description="Löst das Problem manueller Auftragsverfolgung im Fotostudio Schwab Remlingen durch ein SvelteKit-Tool. Ersetzt Papierlisten durch eine digitale Aufgabenliste, welche auch offline im Internen Netzwerk funktioniert."
+                />
+                <Card
+                    title="Lens Ledger"
+                    description="Ein intern entwickeltes Tool für Foto-Studio Schwab Remlingen. Auftragszettel werden digital erstellt und direkt in das PhotoFlow System eingespeist sowie eine PDF für den Auftrag gedruckt."
+                />
+                <Card
+                    title="SnapTrack"
+                    description="Ein intern entwickeltes Tool für Foto-Studio Schwab Remlingen. Automatisiert das versenden von digitalen Kindergartenbestellungen."
+                />
+
+                <Card
+                    title="domenic.dev"
+                    description="Mein persönliches Portfolio, welches mit Astro und Tailwind CSS erstellt wurde. Es ist eine statische Seite, die auf Vercel gehostet wird."
+                />
+            </div>
         </section>
     </main>
 </Layout>

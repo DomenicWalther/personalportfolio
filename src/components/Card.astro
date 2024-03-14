@@ -1,26 +1,28 @@
-<div class="max-w-96 bg-[#CBC2C2] p-5 rounded-lg overflow-hidden">
+---
+const { title, description, buttons } = Astro.props;
+---
+
+<div
+    class="bg-[#CBC2C2] p-5 rounded-lg flex flex-col justify-between overflow-hidden h-full"
+>
     <div class="relative -mx-5 -mt-5">
         <img
             src="https://via.placeholder.com/150"
             alt="Foto-Studio Schwab Remlingen"
-            class="w-full h-40 object-cover"
+            class="w-full h-60 object-cover"
         />
     </div>
-    <div class="mx-auto">
-        <h3 class="mt-5 font-bold text-lg">Foto-Studio Schwab Remlingen</h3>
-        <p class="text-sm font-light">
-            Vollständige Überarbeitung mit Fokus auf modernem Design,
-            SEO-Optimierung und schnelleren Ladezeiten. Einsatz von Webflow
-            ermöglicht dem Studio einfache Inhaltsaktuallisierungen ohne
-            Wordpress. Verantwortlich für Design, Entwicklung und Hosting
+    <div class="flex flex-col grow mx-auto">
+        <h3 class="mt-5 font-bold text-lg">{title}</h3>
+        <p class="text-sm font-light grow">
+            {description}
         </p>
-        <div class="mt-3 flex justify-between gap-2">
-            <button class="py-2 px-6 bg-[#D9D9D9] font-bold grow"
-                >Live Website</button
-            >
-            <button class="py-2 px-6 bg-[#D9D9D9] font-bold grow"
-                >Case Study</button
-            >
-        </div>
+    </div>
+    <div class="mt-3 flex justify-between gap-2">
+        <button class="py-2 px-6 bg-[#D9D9D9] font-bold grow"
+            >Live Website</button
+        >
+        <button class="py-2 px-6 bg-[#D9D9D9] font-bold grow">Case Study</button
+        >
     </div>
 </div>
