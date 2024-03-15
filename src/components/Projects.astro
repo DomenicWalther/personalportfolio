@@ -2,7 +2,15 @@
     document.addEventListener("DOMContentLoaded", function () {
         const hoverTarget = document.getElementById("hovertest");
         const projectHover = document.getElementById("project-hover");
-        const imageContainer = projectHover.querySelector(".image-container");
+        if (!hoverTarget || !projectHover) {
+            return;
+        }
+        const imageContainer = projectHover.querySelector(
+            ".image-container",
+        ) as HTMLElement;
+        if (!imageContainer) {
+            return;
+        }
         const projects = document.querySelectorAll("#hovertest > li");
 
         let mouseX = 0,
@@ -13,6 +21,9 @@
 
         // Function to update the image based on hovered project
         function updateImageOnHover() {
+            if (!imageContainer) {
+                return;
+            }
             projects.forEach((project, index) => {
                 project.addEventListener("mouseenter", () => {
                     const newTopPosition = -(500 * index); // Assuming hoverHeight is 500
@@ -23,6 +34,9 @@
 
         // Handle mouse enter and leave for hoverTarget
         function setupHoverTargetListeners() {
+            if (!hoverTarget || !projectHover) {
+                return;
+            }
             hoverTarget.addEventListener("mouseenter", () =>
                 projectHover.classList.add("active"),
             );
@@ -32,13 +46,16 @@
         }
 
         // Update projectHover position on mouse move
-        function updateHoverPosition(e) {
+        function updateHoverPosition(e: MouseEvent) {
             mouseX = e.clientX - 250; // Assuming hoverWidth is 500
             mouseY = e.clientY - 250 + window.scrollY; // Assuming hoverHeight is 500
         }
 
         // Animation loop for smooth movement
         function animate() {
+            if (!projectHover) {
+                return;
+            }
             hoverX += (mouseX - hoverX) * speed;
             hoverY += (mouseY - hoverY) * speed;
             projectHover.style.left = `${hoverX}px`;

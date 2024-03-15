@@ -1,40 +1,39 @@
 async function typeSentence(sentence, eleRef, delay = 100) {
-  const letters = sentence.split("");
-  let i = 0;
-  while (i < letters.length) {
-    await waitForMs(delay);
-    eleRef.textContent += letters[i];
-    i++;
-  }
-  return;
+    const letters = sentence.split("");
+    let i = 0;
+    while (i < letters.length) {
+        await waitForMs(delay);
+        eleRef.textContent += letters[i];
+        i++;
+    }
+    return;
 }
 
 async function deleteSentence(eleRef) {
-  const sentence = eleRef.textContent;
-  const letters = sentence.split("");
-  let i = 0;
-  while (letters.length > 0) {
-    await waitForMs(50);
-    letters.pop();
-    eleRef.textContent = letters.join("");
-  }
+    const sentence = eleRef.textContent;
+    const letters = sentence.split("");
+    while (letters.length > 0) {
+        await waitForMs(50);
+        letters.pop();
+        eleRef.textContent = letters.join("");
+    }
 }
 
 async function carousel(carouselList, eleRef) {
-  var i = 0;
-  while (true) {
-    await typeSentence(carouselList[i], eleRef);
-    await waitForMs(1500);
-    await deleteSentence(eleRef);
-    await waitForMs(500);
-    i++;
-    if (i >= carouselList.length) {
-      i = 0;
+    var i = 0;
+    while (true) {
+        await typeSentence(carouselList[i], eleRef);
+        await waitForMs(1500);
+        await deleteSentence(eleRef);
+        await waitForMs(500);
+        i++;
+        if (i >= carouselList.length) {
+            i = 0;
+        }
     }
-  }
 }
 function waitForMs(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default carousel;
