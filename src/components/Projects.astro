@@ -2,14 +2,25 @@
     document.addEventListener("DOMContentLoaded", function () {
         var hoverTarget = document.getElementById("hovertest"); // Replace with your actual hover target ID
         var projectHover = document.getElementById("project-hover");
+        const imageContainer = projectHover.querySelector(".image-container");
 
         var hoverWidth = 500;
-        var hoverHeight = 300;
+        var hoverHeight = 500;
+        var imageHeight = 300;
         var mouseX = 0,
             mouseY = 0; // Track mouse position
         var hoverX = 0,
             hoverY = 0; // Track hover element's desired position
         var speed = 0.1; // Control the lerp speed (0 to 1, where 1 is instant)
+        const projects = document.querySelectorAll("#hovertest > li");
+        const images = document.querySelectorAll("#project-hover .hover-img");
+        projects.forEach((project, index) => {
+            project.addEventListener("mouseenter", () => {
+                // Hide all images
+                const newTopPosition = -(hoverHeight * index);
+                imageContainer.style.top = newTopPosition + "px";
+            });
+        });
         hoverTarget.addEventListener("mouseenter", function () {
             projectHover.classList.add("active");
         });
@@ -38,12 +49,25 @@
     });
 </script>
 <div>
-    <ul
+    <div
         id="project-hover"
-        class="absolute bottom-0 left-0 h-0 w-0 transition-all"
+        class="absolute bottom-0 left-0 h-0 w-0 transition-all bg-red-50"
     >
-        <li><img src="https://placehold.co/500x300" alt="placeholder" /></li>
-    </ul>
+        <div class="image-container w-full h-full">
+            <li class="hover-img">
+                <img src="https://placehold.co/500x300" alt="placeholder" />
+            </li>
+            <li class="hover-img">
+                <img src="https://placehold.co/500x400" alt="placeholder" />
+            </li>
+            <li class="hover-img">
+                <img src="https://placehold.co/500x500" alt="placeholder" />
+            </li>
+            <li class="hover-img">
+                <img src="https://placehold.co/500x200" alt="placeholder" />
+            </li>
+        </div>
+    </div>
 </div>
 <h3 class="text-5xl font-bold">Meine Projekte</h3>
 <ul class="my-10" id="hovertest">
@@ -86,11 +110,12 @@
     }
     #project-hover {
         position: absolute;
+        overflow: hidden;
         transform: scale(0);
         bottom: 0;
         left: 0;
         width: 500px;
-        height: 300px;
+        height: 500px;
         transition: transform 0.5s ease;
         transform-origin: center;
         pointer-events: none; /* Ignore pointer events */
@@ -100,5 +125,23 @@
     #project-hover.active {
         transform: scale(1);
         transition: transform 0.5s ease;
+    }
+
+    .image-container {
+        position: absolute;
+        top: 0;
+        transition: top 0.5s ease-out;
+    }
+
+    .hover-img {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hover-img.active {
+        display: block;
     }
 </style>
