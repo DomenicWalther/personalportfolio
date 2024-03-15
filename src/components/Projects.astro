@@ -1,51 +1,55 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var hoverTarget = document.getElementById("hovertest"); // Replace with your actual hover target ID
-        var projectHover = document.getElementById("project-hover");
+        const hoverTarget = document.getElementById("hovertest");
+        const projectHover = document.getElementById("project-hover");
         const imageContainer = projectHover.querySelector(".image-container");
-
-        var hoverWidth = 500;
-        var hoverHeight = 500;
-        var imageHeight = 300;
-        var mouseX = 0,
-            mouseY = 0; // Track mouse position
-        var hoverX = 0,
-            hoverY = 0; // Track hover element's desired position
-        var speed = 0.1; // Control the lerp speed (0 to 1, where 1 is instant)
         const projects = document.querySelectorAll("#hovertest > li");
-        const images = document.querySelectorAll("#project-hover .hover-img");
-        projects.forEach((project, index) => {
-            project.addEventListener("mouseenter", () => {
-                // Hide all images
-                const newTopPosition = -(hoverHeight * index);
-                imageContainer.style.top = newTopPosition + "px";
+
+        let mouseX = 0,
+            mouseY = 0;
+        let hoverX = 0,
+            hoverY = 0;
+        const speed = 0.1;
+
+        // Function to update the image based on hovered project
+        function updateImageOnHover() {
+            projects.forEach((project, index) => {
+                project.addEventListener("mouseenter", () => {
+                    const newTopPosition = -(500 * index); // Assuming hoverHeight is 500
+                    imageContainer.style.top = `${newTopPosition}px`;
+                });
             });
-        });
-        hoverTarget.addEventListener("mouseenter", function () {
-            projectHover.classList.add("active");
-        });
-
-        hoverTarget.addEventListener("mousemove", function (e) {
-            mouseX = e.clientX - hoverWidth / 2;
-            mouseY = e.clientY - hoverHeight / 2 + window.scrollY;
-        });
-
-        hoverTarget.addEventListener("mouseleave", function () {
-            projectHover.classList.remove("active");
-        });
-        function animate() {
-            // Use LERP formula to gradually move hover element towards the mouse position
-            hoverX += (mouseX - hoverX) * speed;
-            hoverY += (mouseY - hoverY) * speed;
-
-            // Apply the calculated position, adjusting for element dimensions
-            projectHover.style.left = hoverX + "px";
-            projectHover.style.top = hoverY + "px";
-
-            requestAnimationFrame(animate); // Continue the animation
         }
 
-        animate(); // Start the animation loop
+        // Handle mouse enter and leave for hoverTarget
+        function setupHoverTargetListeners() {
+            hoverTarget.addEventListener("mouseenter", () =>
+                projectHover.classList.add("active"),
+            );
+            hoverTarget.addEventListener("mouseleave", () =>
+                projectHover.classList.remove("active"),
+            );
+        }
+
+        // Update projectHover position on mouse move
+        function updateHoverPosition(e) {
+            mouseX = e.clientX - 250; // Assuming hoverWidth is 500
+            mouseY = e.clientY - 250 + window.scrollY; // Assuming hoverHeight is 500
+        }
+
+        // Animation loop for smooth movement
+        function animate() {
+            hoverX += (mouseX - hoverX) * speed;
+            hoverY += (mouseY - hoverY) * speed;
+            projectHover.style.left = `${hoverX}px`;
+            projectHover.style.top = `${hoverY}px`;
+            requestAnimationFrame(animate);
+        }
+
+        updateImageOnHover();
+        setupHoverTargetListeners();
+        hoverTarget.addEventListener("mousemove", updateHoverPosition);
+        animate();
     });
 </script>
 <div>
