@@ -1,4 +1,5 @@
 ---
+import Projects from "../components/Projects.astro";
 import Card from "../components/Card.astro";
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
@@ -46,43 +47,33 @@ import selfPortrait from "../../public/Domenic.jpg";
                     Fähigkeiten herausfordert und mein Wachstum fördert.
                 </p>
             </div>
-            <Image
-                src={selfPortrait}
-                alt="Domenic Walther"
-                class="w-full max-w-96"
-            />
-        </section>
-
-        <section class="mt-20">
-            <h2 class="text-5xl font-bold">MEINE <br />PROJEKTE</h2>
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-10"
-            >
-                <Card
-                    title="Foto-Studio Schwab Remlingen"
-                    description="Vollständige Überarbeitung mit Fokus auf modernem Design, SEO-Optimierung und schnelleren Ladezeiten. Einsatz von Webflow ermöglicht dem Studio einfache Inhaltsaktuallisierung ohne Wordpress."
-                />
-                <Card
-                    title="PhotoFlow"
-                    description="Löst das Problem manueller Auftragsverfolgung im Fotostudio Schwab Remlingen durch ein SvelteKit-Tool. Ersetzt Papierlisten durch eine digitale Aufgabenliste, welche auch offline im Internen Netzwerk funktioniert."
-                />
-                <Card
-                    title="Lens Ledger"
-                    description="Ein intern entwickeltes Tool für Foto-Studio Schwab Remlingen. Auftragszettel werden digital erstellt und direkt in das PhotoFlow System eingespeist sowie eine PDF für den Auftrag gedruckt."
-                />
-                <Card
-                    title="SnapTrack"
-                    description="Ein intern entwickeltes Tool für Foto-Studio Schwab Remlingen. Automatisiert das versenden von digitalen Kindergartenbestellungen."
-                />
-
-                <Card
-                    title="domenic.dev"
-                    description="Mein persönliches Portfolio, welches mit Astro und Tailwind CSS erstellt wurde. Es ist eine statische Seite, die auf Vercel gehostet wird."
-                />
+            <div class="w-full max-w-96">
+                <div class="relative">
+                    <Image
+                        src={selfPortrait}
+                        alt="Domenic Walther"
+                        class="w-full max-w-96 z-10 relative"
+                    />
+                    <svg
+                        viewBox="0 0 200 200"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="absolute inset-0 w-full max-w-96 h-full z-1"
+                        width="400"
+                        height="400"
+                    >
+                        <path
+                            fill="#F2F4F8"
+                            d="M46.5,-62.7C53.3,-49.7,47.2,-28.5,46,-11.6C44.8,5.3,48.7,17.8,47.4,34.3C46.2,50.8,39.8,71.3,29.3,71.1C18.8,70.8,4.1,49.8,-8.5,38.6C-21.2,27.4,-31.8,26,-42.7,19C-53.5,11.9,-64.5,-0.7,-60.7,-8.7C-56.9,-16.8,-38.4,-20.2,-25.8,-32.2C-13.2,-44.2,-6.6,-64.8,6.6,-72.7C19.8,-80.6,39.7,-75.7,46.5,-62.7Z"
+                            transform="translate(100 100)"></path>
+                    </svg>
+                </div>
             </div>
         </section>
-
         <section class="mt-20">
+            <Projects />
+        </section>
+
+        <section class="mt-20" id="about-me">
             <h2 class="text-5xl font-bold">ÜBER MICH</h2>
         </section>
         <Footer />
