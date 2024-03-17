@@ -4,11 +4,14 @@
         const projectHover = document.getElementById("project-hover");
         const imageContainer = projectHover.querySelector(".image-container");
         const projects = document.querySelectorAll("#hovertest > li");
+        const liveSite = document.getElementById("live-site");
 
         let mouseX = 0,
             mouseY = 0;
         let hoverX = 0,
             hoverY = 0;
+        let liveX = 0,
+            liveY = 0;
         const speed = 0.1;
 
         // Function to update the image based on hovered project
@@ -41,8 +44,23 @@
         function animate() {
             hoverX += (mouseX - hoverX) * speed;
             hoverY += (mouseY - hoverY) * speed;
+            const distanceX = mouseX - hoverX;
+            const distanceY = mouseY - hoverY;
+            const distance = Math.sqrt(
+                distanceX * distanceX + distanceY * distanceY,
+            );
+            // Use a square root to ensure the speed increases with distance but at a decreasing rate
+            const dynamicSpeed = Math.min(
+                speed + Math.sqrt(distance) / 100,
+                0.5,
+            ); // Cap the speed with a maximum value
             projectHover.style.left = `${hoverX}px`;
             projectHover.style.top = `${hoverY}px`;
+
+            liveX += (mouseX + 250 - 28 - liveX) * dynamicSpeed;
+            liveY += (mouseY + 250 - 28 - liveY) * dynamicSpeed;
+            liveSite.style.left = `${liveX}px`;
+            liveSite.style.top = `${liveY}px`;
             requestAnimationFrame(animate);
         }
 
@@ -54,13 +72,21 @@
 </script>
 <div>
     <div
+        class="pointer-events-none cursor-pointer absolute rounded-full bg-blue-600 h-14 text-[10px] p-6 w-14 text-white font-medium flex justify-center items-center leading-none z-50"
+        id="live-site"
+    >
+        Live Site
+    </div>
+    <div
         id="project-hover"
-        class="absolute bottom-0 left-0 h-0 w-0 transition-all bg-red-50"
+        class="absolute bottom-0 left-0 h-0 w-0 transition-all bg-red-50 flex items-center justify-center z-10"
     >
         <div class="image-container w-full h-full">
-            <li class="hover-img">
-                <img src="https://placehold.co/500x300" alt="placeholder" />
-            </li>
+            <a href="https://www.fotoschwab.de" target="_blank">
+                <li class="hover-img">
+                    <img src="https://placehold.co/500x300" alt="placeholder" />
+                </li>
+            </a>
             <li class="hover-img">
                 <img src="https://placehold.co/500x400" alt="placeholder" />
             </li>
@@ -133,7 +159,7 @@
         transition: transform 0.5s ease;
         transform-origin: center;
         pointer-events: none; /* Ignore pointer events */
-        z-index: 100; /* Ensure it's above other content */
+        z-index: 10; /* Ensure it's above other content */
     }
 
     #project-hover.active {
