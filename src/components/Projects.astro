@@ -26,12 +26,14 @@
 
         // Handle mouse enter and leave for hoverTarget
         function setupHoverTargetListeners() {
-            hoverTarget.addEventListener("mouseenter", () =>
+            hoverTarget.addEventListener("mouseenter", () => {
                 projectHover.classList.add("active"),
-            );
-            hoverTarget.addEventListener("mouseleave", () =>
+                    liveSite.classList.add("active");
+            });
+            hoverTarget.addEventListener("mouseleave", () => {
                 projectHover.classList.remove("active"),
-            );
+                    liveSite.classList.remove("active");
+            });
         }
 
         // Update projectHover position on mouse move
@@ -72,7 +74,7 @@
 </script>
 <div>
     <div
-        class="pointer-events-none cursor-pointer absolute rounded-full bg-blue-600 h-14 text-[10px] p-6 w-14 text-white font-medium flex justify-center items-center leading-none z-50"
+        class="pointer-events-none absolute rounded-full bg-blue-600 h-14 text-[10px] p-6 w-14 text-white font-medium flex justify-center items-center leading-none z-50"
         id="live-site"
     >
         Live Site
@@ -163,6 +165,16 @@
     }
 
     #project-hover.active {
+        transform: scale(1);
+        transition: transform 0.5s ease;
+    }
+
+    #live-site {
+        transform-origin: center;
+        transform: scale(0);
+        transition: transform 0.25s ease;
+    }
+    #live-site.active {
         transform: scale(1);
         transition: transform 0.5s ease;
     }
