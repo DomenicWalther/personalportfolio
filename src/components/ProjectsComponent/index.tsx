@@ -11,23 +11,31 @@ const projects = [
     description: "Design & Development",
     src: "https://placehold.co/500x300",
     link: "https://www.fotoschwab.de",
+    color: "#455CE9",
   },
   {
     title: "PhotoFlow",
     description: "Design & Development",
     src: "https://placehold.co/500x400",
     link: "https://photoflow.domenicwalther.de",
+    color: "#455CE9",
   },
   {
     title: "DomenicWalther",
     description: "Design & Development",
     src: "https://placehold.co/500x500",
     link: "https://domenicwalther.de",
+    color: "#455CE9",
   },
 ];
 
+interface ModalState {
+  active: boolean;
+  index: number;
+}
+
 export default function ProjectsComponent() {
-  const [modal, setModal] = useState({ active: false, index: 0 });
+  const [modal, setModal] = useState<ModalState>({ active: false, index: 0 });
 
   return (
     <main className={styles.main}>

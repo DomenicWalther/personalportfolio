@@ -19,7 +19,24 @@ const scaleAnimation = {
   },
 };
 
-export default function Index({ modal, projects }) {
+interface ModalState {
+  active: boolean;
+  index: number;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  src: string;
+  link: string;
+  color: string;
+}
+interface IndexProps {
+  modal: ModalState;
+  projects: Project[];
+}
+
+const Index: React.FC<IndexProps> = ({ modal, projects }) => {
   const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
@@ -115,4 +132,6 @@ export default function Index({ modal, projects }) {
       </motion.a>
     </>
   );
-}
+};
+
+export default Index;

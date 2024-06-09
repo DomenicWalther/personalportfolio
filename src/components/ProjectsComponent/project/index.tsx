@@ -2,7 +2,21 @@
 import React from "react";
 import styles from "./style.module.css";
 
-export default function index({ index, title, setModal, description, link }) {
+interface IndexProps {
+  index: number;
+  title: string;
+  setModal: (modalState: { active: boolean; index: number }) => void;
+  description: string;
+  link: string;
+}
+
+const Index: React.FC<IndexProps> = ({
+  index,
+  title,
+  setModal,
+  description,
+  link,
+}) => {
   return (
     <a
       href={link}
@@ -20,4 +34,6 @@ export default function index({ index, title, setModal, description, link }) {
       <p>{description}</p>
     </a>
   );
-}
+};
+
+export default Index;
